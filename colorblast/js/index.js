@@ -24,7 +24,7 @@ var Game = {
 		this.maxEnemies = 6;
 		this.enemiesAlive = 0;
 		this.currentFrame = 0;
-		this.maxLives = 3;
+		this.maxLives = 100;
 		this.life = 0;
 		this.binding();
 		this.player = new Player();
@@ -270,7 +270,7 @@ var Bullet = function(x){
 	this.vy = 8;
 	this.index = Game.bulletIndex;
 	this.active = true;
-	this.color = "white";
+	this.color = "rainbows";
 	
 };
 
@@ -346,7 +346,7 @@ Enemy.prototype.die = function(){
   this.explode();
   delete Game.enemies[this.index];
   Game.score += 15;
-  Game.enemiesAlive = Game.enemiesAlive > 1 ? Game.enemiesAlive - 1 : 0;
+  Game.enemiesAlive = Game.enemiesAlive > 1? Game.enemiesAlive - 1 : 0;
   if(Game.enemiesAlive < Game.maxEnemies){
   	Game.enemiesAlive++;
   	setTimeout(function(){
