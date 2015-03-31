@@ -24,7 +24,7 @@ var Game = {
 		this.maxEnemies = 6;
 		this.enemiesAlive = 0;
 		this.currentFrame = 0;
-		this.maxLives =100;
+		this.maxLives = 3;
 		this.life = 0;
 		this.binding();
 		this.player = new Player();
@@ -276,7 +276,7 @@ var Bullet = function(x){
 
 
 Bullet.prototype.draw = function(){
-	Game.ctx.fillStyle = blue;
+	Game.ctx.fillStyle = this.color;
 	Game.ctx.fillRect(this.x, this.y, this.width, this.height);
 };
 
