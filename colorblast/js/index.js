@@ -270,7 +270,7 @@ var Bullet = function(x){
 	this.vy = 8;
 	this.index = Game.bulletIndex;
 	this.active = true;
-	this.color = "rainbows";
+	this.color = "rainbow";
 	
 };
 
@@ -315,7 +315,7 @@ Enemy.prototype.draw = function(){
 	Game.ctx.fillRect(this.x, this.y, this.width, this.height);
 };
 
-
+var elives=2;
 Enemy.prototype.update = function(){
 	if(this.movingLeft){
 		if(this.x > 0){
@@ -336,22 +336,26 @@ Enemy.prototype.update = function(){
 	for(var i in Game.bullets){
 		var currentBullet = Game.bullets[i];
 		if(Game.collision(currentBullet, this)){
-			this.die();
+      elives--;
+      if (elives < 0) {
+       this.die(); 
+        elives=2;
+      }
 			delete Game.bullets[i];
 		}
 	} 
-};
-
+}
 Enemy.prototype.die = function(){
   this.explode();
   delete Game.enemies[this.index];
   Game.score += 15;
-  Game.enemiesAlive = Game.enemiesAlive > 1? Game.enemiesAlive - 1 : 0;
+  Game.enemiesAlive = Game.enemiesAlive > 1 ? Game.enemiesAlive - 1 : 0;
   if(Game.enemiesAlive < Game.maxEnemies){
   	Game.enemiesAlive++;
   	setTimeout(function(){
   		new Enemy();
 	  }, 2000);
+
 	}
   
 };
